@@ -23,14 +23,13 @@ export OPENBLAS_NUM_THREADS=1
 WITH_BLAS_LIB="-L${PREFIX}/lib -lopenblas"
 WITH_LAPACK_LIB="-L${PREFIX}/lib -llapack"
 
-ls
-
 CC="${CC}" CXX="${CXX}" ./configure --prefix="${PREFIX}" --exec-prefix="${PREFIX}" \
   --with-blas-lib="${WITH_BLAS_LIB}" \
   --with-lapack-lib="${WITH_LAPACK_LIB}" \
   || { cat config.log; exit 1; }
 make
-if [ "${UNAME}" == "Linux" ]; then
-  make test
-fi
+#if [ "${UNAME}" == "Linux" ]; then
+#  make test
+#fi
+make test
 make install
